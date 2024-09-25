@@ -6,7 +6,6 @@ import type IReceita from '@/interfaces/iReceita';
 import CardReceita from './CardReceita.vue';
 import { itensDeLista1EstaoEmLista2 } from '@/operacoes/listas';
 
-
 export default {
   props: {
     ingredientes: { type: Array as PropType<string[]>, required: true }

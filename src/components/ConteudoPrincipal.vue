@@ -13,7 +13,7 @@ export default {
       conteudo: 'SelecionarIngredientes' as Pagina
     };
   },
-  components: { SelecionarIngredientes, Tag, SuaLista },
+  components: { SelecionarIngredientes, Tag, SuaLista, MostrarReceitas },
   methods: {
     adicionarIngrediente(ingrediente: string) {
       this.ingredientes.push(ingrediente)
@@ -21,7 +21,7 @@ export default {
     removerIngrediente(ingrediente: string) {
       this.ingredientes = this.ingredientes.filter(iLista => ingrediente !== iLista);
     },
-    navegar(pagina: Pagina){
+    navegar(pagina: Pagina) {
       this.conteudo = pagina;
     }
   }
@@ -31,17 +31,17 @@ export default {
 <template>
   <main class="conteudo-principal">
     <SuaLista :ingredientes="ingredientes" />
+
     <KeepAlive include="SelecionarIngredientes">
-
-
-      
       <SelecionarIngredientes v-if="conteudo === 'SelecionarIngredientes'"
-      @adicionar-ingrediente="adicionarIngrediente"
-      @remover-ingrediente="removerIngrediente"
-      @buscar-receitas="navegar('MostrarReceitas')"
+        @adicionar-ingrediente="adicionarIngrediente"
+        @remover-ingrediente="removerIngrediente"
+        @buscar-receitas="navegar('MostrarReceitas')"
       />
-      
+  
       <MostrarReceitas v-else-if="conteudo === 'MostrarReceitas'"
+        :ingredientes="ingredientes"
+        @editar-receitas="navegar('SelecionarIngredientes')"
       />
     </KeepAlive>
   </main>
